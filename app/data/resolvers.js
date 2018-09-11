@@ -51,5 +51,29 @@ const resolvers = {
         throw new Error('Missing or invalid jwt token')
       }
     }
+  },
+  User: {
+    // Fetch all posts created by a user
+    async posts(userInJson) {
+      // Convert JSON to model instance
+      const user = new User()
+      user.newUp(userInJson)
+
+      const posts = await user.posts().fetch()
+      return posts.toJSON()
+    }
+  },
+  Post: {
+    // Fetch the author of a particular post
+    async user(postInJson) {
+      // Convert JSON to model instance
+      const post = new Post()
+      post.newUp(postInJson)
+
+      const user = await post.user().fetch()
+      return user.toJSON()
+    }
   }
 }
+
+module.exports = resolvers
