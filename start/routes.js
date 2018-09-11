@@ -14,7 +14,7 @@
 */
 
 const Route = use('Route')
-const GraphqlAdonis = use('ApolloServer')
+const { graphqlAdonis, graphiqlAdonis } = require('apollo-server-adonis');
 const schema = require('../app/data/schema');
 
 
@@ -22,13 +22,6 @@ Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
 
-Route.route('/graphql', ({ request, auth, response }) => {
-  return GraphqlAdonis.graphql({
-    schema,
-    context: { auth }
-  }, request, response)
-}, ['GET', 'POST'])
+Route.post('/graphql', graphqlAdonis({ schema }));
 
-Route.get('/graphiql', ({ request, response }) => {
-  return GraphqlAdonis.graphiql({ endpointURL: '/graphql' }, request, response)
-})
+Route.get('/graphiql', graphiqlAdonis({endpointURL: '/graphql'}))

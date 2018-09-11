@@ -24,7 +24,7 @@
     "@adonisjs/framework": "^5.0.7",
     "@adonisjs/ignitor": "^2.0.6",
     "@adonisjs/lucid": "^5.0.4",
-    "adonis-apollo-server": "^1.0.2",
+    "apollo-server-adonis": "^1.4.0",
     "graphql": "^14.0.2",
     "graphql-tools": "^3.1.1",
     "mysql": "^2.16.0",
